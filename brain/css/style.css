@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700');
+
+/*-----------------------------------*\
+$ANIMATIONS
+\*-----------------------------------*/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+@-webkit-keyframes shake {
+    from,
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: translate3d(-10px, 0, 0);
+      transform: translate3d(-10px, 0, 0);
+    }
+  
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: translate3d(10px, 0, 0);
+      transform: translate3d(10px, 0, 0);
+    }
+}
+  
+@keyframes shake {
+    from,
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      -webkit-transform: translate3d(-10px, 0, 0);
+      transform: translate3d(-10px, 0, 0);
+    }
+  
+    20%,
+    40%,
+    60%,
+    80% {
+      -webkit-transform: translate3d(10px, 0, 0);
+      transform: translate3d(10px, 0, 0);
+    }
+}
+  
+.shake {
+    -webkit-animation-name: shake;
+    animation-name: shake;
+}
+
+@-webkit-keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*-----------------------------------*\
+$GENERAL STYLING
+\*-----------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all .3s;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.btn:focus,
+.btn:active,
+input,
+.form-control:focus,
+.form-control:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #B993D6;
+    /* background: rgb(228, 228, 228);
+    background-image: url('../img/bg.jpg');
+    background-size: 125%; 
+    background-repeat: no-repeat;
+    background-position: center; */
+    background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
+    background-blend-mode: normal,color-burn;
+}
+
+/*-----------------------------------*\
+$The Main Container
+\*-----------------------------------*/
+.container {
+    width: 560px;
+    height: auto;
+    padding: 0;
+    margin: auto;
+    color: #415868;
+    background: rgb(255, 255, 255);
+    margin-top: 30px;
+    border-radius: 7px;
+}
+
+.box-shadow {
+    position: relative;
+}
+
+.box-shadow:before, .box-shadow:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 12px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+}
+
+.box-shadow:after {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+}
+
+/*-----------------------------------*\
+$THE NAME SECTION
+\*-----------------------------------*/
+#username {
+    display: none;
+    border-radius: 7px;
+}
+
+#username form {
+    margin: auto;
+    position: relative;
+    text-align: center;
+    padding: 50px;
+    width: 560px;
+    height: auto;
+    padding-bottom: 100px;
+}
+
+#username form h2 {
+    margin-bottom: 30px;
+}
+
+#username form i.material-icons {
+    font-size: 5em;
+    margin-bottom: 30px;
+    color: #007bff;
+}
+
+#username form input {
+    border: 2px solid #ced4da;
+}
+
+#username form button {
+    position: absolute;
+    bottom: -10px;
+    border-radius: 0 !important;
+    width: 100%;
+    left: 0;
+    font-size: 1.5em !important;
+    height: 60px;
+    border-bottom-left-radius: 7px !important;
+    border-bottom-right-radius: 7px !important;
+}
+
+
+/*-----------------------------------*\
+$THE LOGIN FORM
+\*-----------------------------------*/
+#theForm {
+    display: none;
+    border-radius: 7px;
+}
+
+#theForm form {
+    margin: auto;
+    position: relative;
+    text-align: center;
+    padding: 50px;
+    width: 560px;
+    height: auto;
+    padding-bottom: 100px;
+}
+
+#theForm form h2 {
+    font-weight: 300;
+}
+
+#theForm form i.material-icons {
+    font-size: 5em;
+    margin-bottom: 30px;
+    opacity: .6;
+}
+
+#theForm form i.finger-print {
+    color: #007bff;
+}
+
+#theForm form i.warning {
+    display: none;
+    color: #dc3545;
+}
+
+#theForm form i.success {
+    display: none;
+    color: #28a745;
+}
+
+#theForm form .form-group {
+    display: block;
+}
+
+#theForm form #pass {
+    border: 2px solid #ced4da;
+}
+
+#theForm form button i.loading {
+    font-size: 3em;
+    -webkit-animation: rotate 1s infinite ease-in-out;
+}
+
+#theForm form button {
+    position: absolute;
+    bottom: -10px;
+    border-radius: 0 !important;
+    width: 100%;
+    left: 0;
+    font-size: 1.5em !important;
+    height: 60px;
+    border-bottom-left-radius: 7px !important;
+    border-bottom-right-radius: 7px !important;
+}
+
+/*-----------------------------------*\
+$QUESTION SECTIONS
+\*-----------------------------------*/
+section#theQuiz {
+    display: none;
+    background: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+    border-radius: 7px;
+}
+
+#quizForm {
+    position: relative;
+    background-color: transparent;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    padding-bottom: 70px;
+}
+
+#quizForm h2 {
+    text-align: center;  
+}
+
+#quizForm p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: -5px;
+}
+
+#quizForm #tab .custom-radio {
+    margin-top: 10px;
+}
+
+#quizForm #tab label.custom-control-label {
+    width: 100%;
+    overflow: auto;
+}
+
+#quizForm button {
+    position: absolute;
+    bottom: -10px;
+    border-radius: 0;
+    width: 100%;
+    left: 0;
+    font-size: 1.5em;
+    height: 60px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+/* Make circles that indicate the steps of the form: */
+#quizForm .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+#quizForm .step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+#quizForm .step.finish {
+    opacity: 0.8;
+    background-color: #17a2b8;
+}
+
+/*-----------------------------------*\
+$RESULT SECTION
+\*-----------------------------------*/
+section#theResult {
+    display: none;
+    background: rgb(255, 255, 255);
+    border-radius: 7px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 80%;
+    max-height: 250px;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+.circular-chart.red .circle {
+    stroke: #ff0000;
+}
+
+.circular-chart.orange .circle {
+    stroke: #ff9f00;
+}
+
+.circular-chart.green .circle {
+    stroke: #4CC790;
+}
+
+.circular-chart.blue .circle {
+    stroke: #3c9ee5;
+}
+
+.circular-chart.teal .circle {
+    stroke: #008080;
+}
+
+#percentage {
+    fill: #666;
+    font-size: 0.5em;
+    text-anchor: middle;
+}
+
+/*-----------------------------------*\
+$RESPONSIVENESS
+\*-----------------------------------*/
+@media screen and (max-width: 768px) {
+
+    .container, #theForm form, #username form {
+        width: 480px;
+        margin-top: 70px;
+    }
+    #theForm form i.material-icons, #username form i.material-icons {
+        font-size: 4.5em;
+    }
+}
+@media screen and (max-width: 600px) {
+
+    .container, #theForm form, #username form {
+        width: 320px;
+        margin-top: 50px;
+    }
+    #theForm form i.material-icons, #username form i.material-icons {
+        font-size: 4em;
+    }
+    #quizForm #tab label.custom-control-label {
+        border-bottom: 1px solid #ccc;
+    }
+}
