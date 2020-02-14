@@ -1,113 +1,213 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- Google Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="brain/css/style.css">
-    <title>Quiz App!</title>
-    <link rel="icon" type="image/png" href="brain/img/fav.png" />    
-</head>
-<body onload="chkUser()">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<!-- Bootstrap CSS -->
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		/>
+		<!-- Google Material Icons -->
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<!-- Custom Style Sheet -->
+		<link rel="stylesheet" href="brain/css/style.css" />
+		<title>Quiz App!</title>
+		<link rel="icon" type="image/png" href="brain/img/fav.png" />
+	</head>
+	<body onload="chkUser()">
+		<div class="container box-shadow">
+			<!-- The Form -->
+			<div id="username">
+				<form class="form" onsubmit="return false;">
+					<i class="material-icons">face</i>
+					<h2>What's Your Nick Name?</h2>
+					<div class="form-group mx-sm-3 mb-3 passBox">
+						<label for="pass" class="sr-only">Nick Name</label>
+						<input
+							type="text"
+							class="form-control"
+							id="uname"
+							placeholder="Nick Name"
+							onfocus="this.style.borderColor = '#007bff'"
+							onblur="this.style.borderColor = '#ced4da'"
+						/>
+					</div>
+					<button
+						type="submit"
+						class="btn btn-primary mb-2"
+						onclick="askPass();"
+					>
+						Proceed...
+					</button>
+				</form>
+			</div>
+			<!-- The Form -->
+			<div id="theForm">
+				<form class="form" onsubmit="return false;">
+					<i class="material-icons finger-print">https</i>
+					<i class="material-icons warning">warning</i>
+					<i class="material-icons success">done_all</i>
+					<h2
+						id="errH"
+						style="font-weight:bold;font-size:1.7em;margin-bottom: 30px;"
+					></h2>
+					<h2 id="err"></h2>
+					<div class="form-group mx-sm-3 mb-3 passBox">
+						<label for="pass" class="sr-only">Password</label>
+						<input
+							type="password"
+							class="form-control animated"
+							id="pass"
+							placeholder="Provided Key"
+							onkeyup="typing();"
+							onfocus="resetErr();"
+							onblur="this.style.borderColor = '#ced4da';"
+						/>
+					</div>
+					<button
+						type="submit"
+						disabled="disabled"
+						class="btn btn-primary mb-2"
+						id="submit"
+						onclick="chkPass(this);"
+					>
+						Confirm Identity
+					</button>
+				</form>
+			</div>
 
-<div class="container box-shadow">
-<!-- The Form -->
-<div id="username">
-    <form class="form" onsubmit="return false;">
-    <i class="material-icons">face</i>
-    <h2>What's Your Nick Name?</h2>
-    <div class="form-group mx-sm-3 mb-3 passBox">
-        <label for="pass" class="sr-only">Nick Name</label>
-        <input type="text" class="form-control" id="uname" placeholder="Nick Name" onfocus="this.style.borderColor = '#007bff'" onblur="this.style.borderColor = '#ced4da'">
-    </div>
-    <button type="submit" class="btn btn-primary mb-2" onclick="askPass();">Proceed...</button>
-    </form>
-</div>
-<!-- The Form -->
-<div id="theForm">
-    <form class="form" onsubmit="return false;">
-    <i class="material-icons finger-print">https</i>
-    <i class="material-icons warning">warning</i>
-    <i class="material-icons success">done_all</i>
-    <h2 id="errH" style="font-weight:bold;font-size:1.7em;margin-bottom: 30px;"></h2>
-    <h2 id="err"></h2>
-    <div class="form-group mx-sm-3 mb-3 passBox">
-        <label for="pass" class="sr-only">Password</label>
-        <input type="password" class="form-control animated" id="pass" placeholder="Provided Key" onkeyup="typing();" onfocus="resetErr();" onblur="this.style.borderColor = '#ced4da';">
-    </div>
-    <button type="submit" disabled="disabled" class="btn btn-primary mb-2" id="submit" onclick="chkPass(this);">Confirm Identity</button>
-    </form>
-</div>
+			<!-- Quiz Starts Here -->
+			<section id="theQuiz">
+				<form id="quizForm" onsubmit="return false;">
+					<h2>JavaScript Quiz:</h2>
 
-<!-- Quiz Starts Here -->
-<section id="theQuiz">
+					<div id="steps" style="text-align:center;">
+						<!-- Steps will be shown as per questions length -->
+					</div>
 
-<form id="quizForm" onsubmit="return false;">
-    
-<h2>JavaScript Quiz:</h2>
+					<hr />
+					<!-- One "tab" for each step in the form: -->
+					<div id="tab">
+						<p id="que">---Question---</p>
+						<hr />
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt1"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="1"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 1---</label
+							>
+						</div>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt2"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="2"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 2---</label
+							>
+						</div>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt3"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="3"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 3---</label
+							>
+						</div>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="opt4"
+								name="q"
+								class="custom-control-input"
+								onclick="enableBtn(this)"
+								value="4"
+							/>
+							<label
+								class="custom-control-label"
+								onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)"
+								>---Option 4---</label
+							>
+						</div>
+					</div>
 
-<div id="steps" style="text-align:center;">
-<!-- Steps will be shown as per questions length -->
-</div>
+					<div style="overflow:auto;">
+						<div style="float:right;">
+							<button
+								type="button"
+								disabled="disabled"
+								class="btn btn-info mb-2"
+								id="next-button"
+								onclick="next();"
+							>
+								Next
+							</button>
+						</div>
+					</div>
+				</form>
+			</section>
 
-<hr>
-<!-- One "tab" for each step in the form: -->
-<div id="tab">
-<p id="que">---Question---</p>
-<hr>
-    <div class="custom-control custom-radio">
-        <input type="radio" id="opt1" name="q" class="custom-control-input" onclick="enableBtn(this)" value="1">
-        <label class="custom-control-label" onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)">---Option 1---</label>
-    </div>
-    <div class="custom-control custom-radio">
-        <input type="radio" id="opt2" name="q" class="custom-control-input" onclick="enableBtn(this)" value="2">
-        <label class="custom-control-label" onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)">---Option 2---</label>
-    </div>
-    <div class="custom-control custom-radio">
-        <input type="radio" id="opt3" name="q" class="custom-control-input" onclick="enableBtn(this)" value="3">
-        <label class="custom-control-label" onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)">---Option 3---</label>
-    </div>
-    <div class="custom-control custom-radio">
-        <input type="radio" id="opt4" name="q" class="custom-control-input" onclick="enableBtn(this)" value="4">
-        <label class="custom-control-label" onclick="var id = this.previousElementSibling.id; this.setAttribute('for', id)">---Option 4---</label>
-    </div>
-</div>
+			<!-- The Result -->
+			<section id="theResult">
+				<div id="resultCircle">
+					Calculating Your Result...
+				</div>
+				<!-- Result Circle End -->
+				<br />
+				<!-- <h1>Congrats! Your Are Passed</h1> -->
+				<h2 id="resultFb" style="font-weight: bold;"></h2>
+				<h3 id="correctAns"></h3>
+				<hr />
+				<button class="btn btn-info" onclick="retakeQuiz();">
+					Retake Quiz
+				</button>
+			</section>
+		</div>
+		<!-- Container End -->
+		<button
+			class="btn btn-danger"
+			style="position:absolute; bottom:5px; right:5px;"
+			onclick="logout();"
+			id="logoutBtn"
+		>
+			Logout
+		</button>
 
-    <div style="overflow:auto;">
-        <div style="float:right;">
-        <button type="button" disabled="disabled" class="btn btn-info mb-2" id="next-button" onclick="next();">Next</button>
-        </div>
-    </div>
-</form>
-</section>
-
-<!-- The Result -->
-<section id="theResult">
-<div id="resultCircle">
-Calculating Your Result...
-</div> <!-- Result Circle End -->
-<br>
-<!-- <h1>Congrats! Your Are Passed</h1> -->
-<h2 id="resultFb" style="font-weight: bold;"></h2>
-<h3 id="correctAns"></h3>
-<hr>
-<button class="btn btn-info" onclick="retakeQuiz();">Retake Quiz</button>
-</section>
-
-</div> <!-- Container End -->
-<button class="btn btn-danger" style="position:absolute; bottom:5px; right:5px;" onclick="logout();" id="logoutBtn">Logout</button>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="brain/js/questions.js"></script>
-    <script src="brain/js/script.js"></script>
-</body>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script src="brain/js/questions.js"></script>
+		<script src="brain/js/script.js"></script>
+	</body>
 </html>
