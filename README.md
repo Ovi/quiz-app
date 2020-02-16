@@ -12,6 +12,6 @@
 
 This is made as an assignment while learning Javascript
 
-Demo: https://muhammadovi.github.io/quiz-app
+Demo: https://ovi.github.io/quiz-app
 
 Key: **11223344**
